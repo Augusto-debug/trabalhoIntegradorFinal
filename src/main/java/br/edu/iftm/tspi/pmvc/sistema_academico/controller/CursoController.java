@@ -17,11 +17,8 @@ import br.edu.iftm.tspi.pmvc.sistema_academico.repository.CursoRepository;
 @RequestMapping("/cursos")
 public class CursoController {
 
+    @Autowired
     private CursoRepository cursoRepository;
-
-    CursoController(CursoRepository cursoRepository) {
-        this.cursoRepository = cursoRepository;
-    }
 
     @GetMapping
     public String listarCursos(Model model) {
@@ -45,7 +42,7 @@ public class CursoController {
     public String editarCursoForm(@PathVariable Integer cd_curso, Model model) {
         var cursoOptional = cursoRepository.buscarPorCodigo(cd_curso);
         if (cursoOptional.isEmpty()) {
-            return "redirect:/cursos";  
+            return "redirect:/cursos";
         }
         model.addAttribute("curso", cursoOptional.get());
         return "cursos/editar";
@@ -53,7 +50,7 @@ public class CursoController {
 
     @PostMapping("/editar/{cd_curso}")
     public String atualizarCurso(@PathVariable Integer cd_curso, @ModelAttribute Curso cursoAtualizado) {
-        cursoAtualizado.setCd_curso(cd_curso); 
+        cursoAtualizado.setCd_curso(cd_curso);
         cursoRepository.atualizar(cursoAtualizado);
         return "redirect:/cursos";
     }

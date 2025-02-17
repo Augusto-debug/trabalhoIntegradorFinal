@@ -46,7 +46,7 @@ public class CursoRepository {
             return Optional.empty();
         }
     }
-    
+
 
     public void salvar(Curso curso) {
         String sql = "INSERT INTO curso (nome_curso, area_curso, carga_horaria_curso, modalidade_curso) VALUES (?, ?, ?, ?)";
@@ -65,7 +65,7 @@ public class CursoRepository {
 
     public List<Curso> listarComParametros(String area, Integer cargaHoraria) {
         String sql = "SELECT * FROM curso WHERE area_curso = :area AND carga_horaria_curso = :cargaHoraria";
-        
+
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("area", area)
                 .addValue("cargaHoraria", cargaHoraria);
