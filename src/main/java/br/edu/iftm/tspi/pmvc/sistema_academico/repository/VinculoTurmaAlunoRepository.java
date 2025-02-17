@@ -1,7 +1,9 @@
 package br.edu.iftm.tspi.pmvc.sistema_academico.repository;
 
+import java.util.Collections;
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -19,30 +21,35 @@ public class VinculoTurmaAlunoRepository {
 
     public List<VinculoTurmaAluno> listar() {
         String sql = "SELECT v.*, a.nome_aluno, t.ano_semestre " +
-                     "FROM VinculoTurmaAluno v " +
-                     "JOIN aluno a ON v.cd_aluno = a.cd_aluno " +
-                     "JOIN turma t ON v.cd_turma = t.cd_turma " +
-                     "ORDER BY v.cd_vinculo ASC";
-        return jdbcTemplate.query(sql, (rs, rowNum) -> {
-            VinculoTurmaAluno vinculo = new VinculoTurmaAluno();
-            vinculo.setCd_vinculo(rs.getInt("cd_vinculo"));
-            vinculo.setNota(rs.getDouble("nota"));
-            vinculo.setFrequencia(rs.getDouble("frequencia"));
-    
-            Turma turma = new Turma();
-            turma.setCd_turma(rs.getInt("cd_turma"));
-            turma.setAno_semestre(rs.getString("ano_semestre"));
-            vinculo.setCd_turma(turma);
-    
-            Aluno aluno = new Aluno();
-            aluno.setCd_aluno(rs.getInt("cd_aluno"));
-            aluno.setNome_aluno(rs.getString("nome_aluno"));
-            vinculo.setCd_aluno(aluno);
-    
-            return vinculo;
-        });
-    }
+                "FROM VinculoTurmaAluno v " +
+                "JOIN aluno a ON v.cd_aluno = a.cd_aluno " +
+                "JOIN turma t ON v.cd_turma = t.cd_turma " +
+                "ORDER BY v.cd_vinculo ASC";
 
+        try {
+            return jdbcTemplate.query(sql, (rs, rowNum) -> {
+                VinculoTurmaAluno vinculo = new VinculoTurmaAluno();
+                vinculo.setCd_vinculo(rs.getInt("cd_vinculo"));
+                vinculo.setNota(rs.getDouble("nota"));
+                vinculo.setFrequencia(rs.getDouble("frequencia"));
+
+                Turma turma = new Turma();
+                turma.setCd_turma(rs.getInt("cd_turma"));
+                turma.setAno_semestre(rs.getString("ano_semestre"));
+                vinculo.setCd_turma(turma);
+
+                Aluno aluno = new Aluno();
+                aluno.setCd_aluno(rs.getInt("cd_aluno"));
+                aluno.setNome_aluno(rs.getString("nome_aluno"));
+                vinculo.setCd_aluno(aluno);
+
+                return vinculo;
+            });
+        } catch (DataAccessException e) {
+            System.err.println("Error executing query: " + e.getMessage());
+            return Collections.emptyList();
+        }
+    }
     public VinculoTurmaAluno buscarPorCodigo(Integer cd_vinculo) {
         String sql = "SELECT v.*, a.nome_aluno " +
                 "FROM VinculoTurmaAluno v " +
