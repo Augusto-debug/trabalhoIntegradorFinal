@@ -17,8 +17,11 @@ import br.edu.iftm.tspi.pmvc.sistema_academico.repository.CursoRepository;
 @RequestMapping("/cursos")
 public class CursoController {
 
-    @Autowired
     private CursoRepository cursoRepository;
+
+    CursoController(CursoRepository cursoRepository) {
+        this.cursoRepository = cursoRepository;
+    }
 
     @GetMapping
     public String listarCursos(Model model) {
