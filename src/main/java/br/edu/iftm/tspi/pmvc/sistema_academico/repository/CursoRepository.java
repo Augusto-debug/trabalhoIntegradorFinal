@@ -54,17 +54,17 @@ public class CursoRepository {
     }
 
     public void atualizar(Curso curso) {
-        String sql = "UPDATE curso SET nome_curso = ?, area_curso = ?, carga_horaria_curso = ?, modalidade_curso = ? WHERE cd_curso = ?";
+        String sql = "UPDATE Curso SET nome_curso = ?, area_curso = ?, carga_horaria_curso = ?, modalidade_curso = ? WHERE cd_curso = ?";
         jdbcTemplate.update(sql, curso.getNome_curso(), curso.getArea_curso(), curso.getCarga_horaria_curso(), curso.getModalidade_curso(), curso.getCd_curso());
     }
 
     public void excluir(Integer cd_curso) {
-        String sql = "DELETE FROM curso WHERE cd_curso = ?";
+        String sql = "DELETE FROM Curso WHERE cd_curso = ?";
         jdbcTemplate.update(sql, cd_curso);
     }
 
     public List<Curso> listarComParametros(String area, Integer cargaHoraria) {
-        String sql = "SELECT * FROM curso WHERE area_curso = :area AND carga_horaria_curso = :cargaHoraria";
+        String sql = "SELECT * FROM Curso WHERE area_curso = :area AND carga_horaria_curso = :cargaHoraria";
 
         SqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("area", area)
