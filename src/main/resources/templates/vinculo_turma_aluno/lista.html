@@ -30,12 +30,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="vinculo : ${vinculo_turma_aluno}">
-                    <td th:text="${vinculo.cd_vinculo}"></td>
-                    <td th:text="${vinculo.nota}"></td>
-                    <td th:text="${vinculo.frequencia}"></td>
-                    <td th:text="${vinculo.cd_turma?.ano_semestre}"></td>
-                    <td th:text="${vinculo.cd_aluno?.nome_aluno}"></td>
+                <tr th:each="vinculos : ${vinculo_turma_aluno}">
+                    <td th:text="${vinculos.cd_vinculo}"></td>
+                    <td th:text="${vinculos.nota}"></td>
+                    <td th:text="${vinculos.frequencia}"></td>
+                    <td th:text="${vinculos.cd_turma?.ano_semestre}"></td>
+                    <td th:text="${vinculos.cd_aluno?.nome_aluno}"></td>
                     <td>
                         <a
                             th:href="@{/vinculo_turma_aluno/editar/{cd_vinculo}(cd_vinculo=${vinculo.cd_vinculo})}">Editar</a>

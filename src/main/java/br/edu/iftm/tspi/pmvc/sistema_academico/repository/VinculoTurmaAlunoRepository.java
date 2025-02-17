@@ -1,9 +1,7 @@
 package br.edu.iftm.tspi.pmvc.sistema_academico.repository;
 
-import java.util.Collections;
 import java.util.List;
 
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -27,7 +25,7 @@ public class VinculoTurmaAlunoRepository {
                 "ORDER BY v.cd_vinculo ASC";
 
         try {
-            List<VinculoTurmaAluno> result = jdbcTemplate.query(sql, (rs, rowNum) -> {
+            return jdbcTemplate.query(sql, (rs, rowNum) -> {
                 VinculoTurmaAluno vinculo = new VinculoTurmaAluno();
                 vinculo.setCd_vinculo(rs.getInt("cd_vinculo"));
                 vinculo.setNota(rs.getDouble("nota"));
@@ -45,11 +43,8 @@ public class VinculoTurmaAlunoRepository {
 
                 return vinculo;
             });
-            System.out.println("Result from listar(): " + result);
-            return result;
-        } catch (DataAccessException e) {
-            System.err.println("Error executing query: " + e.getMessage());
-            return Collections.emptyList();
+        } catch (Exception e) {
+            return null;
         }
     }
     public VinculoTurmaAluno buscarPorCodigo(Integer cd_vinculo) {
