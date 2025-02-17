@@ -25,7 +25,7 @@ public class VinculoTurmaAlunoRepository {
                 "ORDER BY v.cd_vinculo ASC";
 
         try {
-            return jdbcTemplate.query(sql, (rs, rowNum) -> {
+            List<VinculoTurmaAluno> result = jdbcTemplate.query(sql, (rs, rowNum) -> {
                 VinculoTurmaAluno vinculo = new VinculoTurmaAluno();
                 vinculo.setCd_vinculo(rs.getInt("cd_vinculo"));
                 vinculo.setNota(rs.getDouble("nota"));
@@ -43,6 +43,7 @@ public class VinculoTurmaAlunoRepository {
 
                 return vinculo;
             });
+            return result;
         } catch (Exception e) {
             return null;
         }
