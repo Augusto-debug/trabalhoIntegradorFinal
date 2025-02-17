@@ -38,7 +38,7 @@ public class CursoRepository {
     }
 
     public Optional<Curso> buscarPorCodigo(Integer cd_curso) {
-        String sql = "SELECT * FROM curso WHERE cd_curso = ?";
+        String sql = "SELECT * FROM railway.curso WHERE cd_curso = ?";
         try {
             Curso curso = jdbcTemplate.queryForObject(sql, new Object[]{cd_curso}, new BeanPropertyRowMapper<>(Curso.class));
             return Optional.ofNullable(curso);
