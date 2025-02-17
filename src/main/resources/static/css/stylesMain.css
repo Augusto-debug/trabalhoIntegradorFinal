@@ -52,13 +52,14 @@ main {
 }
 
 .bloco {
+    display: flex;
+    justify-content: center;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
     width: 100%; 
 }
 
-/* Lista de opções */
 ul {
     list-style: none;
 }
