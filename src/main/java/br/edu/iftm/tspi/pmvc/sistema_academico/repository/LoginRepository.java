@@ -14,7 +14,7 @@ package br.edu.iftm.tspi.pmvc.sistema_academico.repository;
         this.db = db;
     }
    public Login validarLogin(Login loginDigitado) {
-        String sql = "select usuario,senha from tb_login where usuario = ?";
+        String sql = "select usuario,senha from login where usuario = ?";
         return db.queryForObject(
                             sql,
                             new BeanPropertyRowMapper<>(Login.class),
@@ -22,7 +22,7 @@ package br.edu.iftm.tspi.pmvc.sistema_academico.repository;
     }
 
     public void salvar(Login login) {
-        String sql = "insert into tb_login(usuario,senha) values(?,?)";
+        String sql = "insert into login(usuario,senha) values(?,?)";
         db.update(sql,login.getUsuario(),login.getSenha());
     }
  }
