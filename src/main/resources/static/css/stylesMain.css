@@ -46,6 +46,7 @@ main {
 .menu {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 30px;
     width: 100%;
 }

@@ -7,38 +7,37 @@
     <link th:href="@{/css/stylesIndex.css}" rel="stylesheet">
 </head>
 <body>
-    <header>    
-        <div>
-            <img th:src="@{/img/logo.jpg}" alt="Logo do Sistema" width="100px">
-            <img src="" alt="">
-        </div>
-        <div>        
-            <h1>Sistema Acadêmico SIAC</h1>
-        </div>
-    </header>
+<header>
+    <div>
+        <img th:src="@{/img/logo.jpg}" alt="Logo do Sistema" width="100px">
+        <img src="" alt="">
+    </div>
+    <div>
+        <h1>Sistema Acadêmico SIAC</h1>
+    </div>
+</header>
 
-    <main>
-        <div class="containerLogin">
-            <h2>Login</h2>
-            <form method="POST" action="/login/entrar">
-                <label for="usuario">Usuário</label>
-                <input type="text" id="usuario" name="usuario" required placeholder="Digite seu usuário">
-                
-                <label for="senha">Senha</label>
-                <input type="password" id="senha" name="senha" required placeholder="Digite sua senha">
-                
-                <button type="submit" id="btnLogin">Entrar</button>
-                
-                <p th:if="${mensagem}" th:text="${mensagem}" class="mensagem" role="alert"></p>
-            </form>
-            <p>
-                <a href="/login/telaNovoUsuario" class="signup-link">Ainda não tem cadastro? Clique aqui para se cadastrar.</a>
-            </p>
-        </div>
-    </main>
+<main>
+    <div class="containerLogin">
+        <h2>Login</h2>
+        <form method="POST" action="/login/entrar" id="formLogin">
+            <label for="usuario">Usuário</label>
+            <input type="text" id="usuario" name="usuario"  placeholder="Digite seu usuário">
 
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha"  placeholder="Digite sua senha">
 
-    <footer th:insert="~{fragments/footer :: footer}"></footer>
+            <button type="submit" id="btnLogin">Entrar</button>
 
+            <p th:if="${mensagem}" th:text="${mensagem}" class="mensagem" role="alert"></p>
+        </form>
+        <p>
+            <a href="/login/telaNovoUsuario" class="signup-link">Ainda não tem cadastro? Clique aqui para se cadastrar.</a>
+        </p>
+    </div>
+</main>
+
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+<script src="js/index.js"></script>
 </body>
 </html>
