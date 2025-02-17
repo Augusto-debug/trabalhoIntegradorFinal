@@ -43,8 +43,11 @@ public class VinculoTurmaAlunoRepository {
 
                 return vinculo;
             });
+
+            System.out.println("Dados retornados pelo repositório: " + result);
             return result;
         } catch (Exception e) {
+            System.err.println("Erro ao executar a consulta: " + e.getMessage());
             return null;
         }
     }
