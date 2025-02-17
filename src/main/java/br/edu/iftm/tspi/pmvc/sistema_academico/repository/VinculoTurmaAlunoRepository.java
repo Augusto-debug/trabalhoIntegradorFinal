@@ -20,12 +20,12 @@ public class VinculoTurmaAlunoRepository {
     public List<VinculoTurmaAluno> listar() {
         String sql = "SELECT v.*, a.nome_aluno, t.ano_semestre " +
                 "FROM VinculoTurmaAluno v " +
-                "JOIN aluno a ON v.cd_aluno = a.cd_aluno " +
-                "JOIN turma t ON v.cd_turma = t.cd_turma " +
+                "JOIN Aluno a ON v.cd_aluno = a.cd_aluno " +
+                "JOIN Turma t ON v.cd_turma = t.cd_turma " +
                 "ORDER BY v.cd_vinculo ASC";
 
-        try {
-            List<VinculoTurmaAluno> result = jdbcTemplate.query(sql, (rs, rowNum) -> {
+
+            return jdbcTemplate.query(sql, (rs, rowNum) -> {
                 VinculoTurmaAluno vinculo = new VinculoTurmaAluno();
                 vinculo.setCd_vinculo(rs.getInt("cd_vinculo"));
                 vinculo.setNota(rs.getDouble("nota"));
@@ -44,17 +44,12 @@ public class VinculoTurmaAlunoRepository {
                 return vinculo;
             });
 
-            System.out.println("Dados retornados pelo repositório: " + result);
-            return result;
-        } catch (Exception e) {
-            System.err.println("Erro ao executar a consulta: " + e.getMessage());
-            return null;
-        }
+
     }
     public VinculoTurmaAluno buscarPorCodigo(Integer cd_vinculo) {
         String sql = "SELECT v.*, a.nome_aluno " +
                 "FROM VinculoTurmaAluno v " +
-                "JOIN aluno a ON v.cd_aluno = a.cd_aluno " +
+                "JOIN Aluno a ON v.cd_aluno = a.cd_aluno " +
                 "WHERE v.cd_vinculo = ?";
         return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
             VinculoTurmaAluno vinculo = new VinculoTurmaAluno();
