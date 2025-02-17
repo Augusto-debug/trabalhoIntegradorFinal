@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link th:href="@{/css/stylesIndex.css}" rel="stylesheet">
-   <title>Cadastro</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/stylesIndex.css}" rel="stylesheet">
+    <title>Cadastro</title>
 </head>
 <body>
-    <header>
-        <div>
-            <img th:src="@{/img/logo.jpg}" alt="Logo do Sistema" width="100px">
-            <img src="" alt="">
-        </div>
-        <div>        
-            <h1>Sistema Acadêmico SIAC</h1>
-        </div>
-    </header>
-    <main>
+<header>
+    <div>
+        <img th:src="@{/img/logo.jpg}" alt="Logo do Sistema" width="100px">
+    </div>
+    <div>
+        <h1>Sistema Acadêmico SIAC</h1>
+    </div>
+</header>
+<main>
+    <div class="containerLogin">
+        <h2>Cadastro</h2>
+        <form method="POST" action="/login/novoUsuario" id="formCadastro">
+            <label for="usuario">Usuário</label>
+            <input type="text" id="usuario" name="usuario" required placeholder="Digite seu usuário">
 
-        <div class="containerLogin">
-            <h2>Cadastro</h2>
-            <form method="POST" action="/login/novoUsuario" id="formCadastro">
-                <input type="text" id="usuario" name="usuario" required placeholder="Usuário">
-                <input type="password" id="senha" name="senha" required placeholder="Senha">
-                <input type="password" id="txtCheckPwd" name="confirmaSenha" required placeholder="Confirmar Senha">
-                <button type="submit" id="btnCadastrar">Cadastrar</button>
-            </form>
-            <p><a href="/" class="signup-link">Faça o login</a></p>
-        </div>
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" required placeholder="Digite sua senha">
 
-    </main>
+            <label for="txtCheckPwd">Confirmar Senha</label>
+            <input type="password" id="txtCheckPwd" name="confirmaSenha" required placeholder="Confirme sua senha">
 
-   <footer th:insert="~{fragments/footer :: footer}"></footer>
+            <button type="submit" id="btnCadastrar">Cadastrar</button>
 
+            <p id="mensagemErro" class="mensagem" role="alert" style="color: red; display: none;"></p>
+        </form>
+        <p><a href="/" class="signup-link">Faça o login</a></p>
+    </div>
+</main>
+
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+<script th:src="@{/js/cadastro.js}"></script>
 </body>
 </html>
