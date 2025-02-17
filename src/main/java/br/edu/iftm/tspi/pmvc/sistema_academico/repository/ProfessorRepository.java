@@ -18,12 +18,12 @@ public class ProfessorRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
     public List<Professor> listar() {
-        String sql = "SELECT * FROM professor";
+        String sql = "SELECT * FROM Professor";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Professor.class));
     }
 
     public Optional<Professor> buscarPorCodigo(Integer cd_professor) {
-        String sql = "SELECT * FROM professor WHERE cd_professor = ?";
+        String sql = "SELECT * FROM Professor WHERE cd_professor = ?";
         try {
             Professor professor = jdbcTemplate.queryForObject(sql, new Object[]{cd_professor}, new BeanPropertyRowMapper<>(Professor.class));
             return Optional.ofNullable(professor);
@@ -33,17 +33,17 @@ public class ProfessorRepository {
     }
 
     public void salvar(Professor professor) {
-        String sql = "INSERT INTO professor (nome_professor, cpf_professor, tel_professor, email_professor, senha_professor) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Professor (nome_professor, cpf_professor, tel_professor, email_professor, senha_professor) VALUES (?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, professor.getNome_professor(), professor.getCpf_professor(), professor.getTel_professor(), professor.getEmail_professor(), professor.getSenha_professor());
     }
 
     public void atualizar(Professor professor) {
-        String sql = "UPDATE professor SET nome_professor = ?, cpf_professor = ?, tel_professor = ?, email_professor = ?, senha_professor = ? WHERE cd_professor = ?";
+        String sql = "UPDATE Professor SET nome_professor = ?, cpf_professor = ?, tel_professor = ?, email_professor = ?, senha_professor = ? WHERE cd_professor = ?";
         jdbcTemplate.update(sql, professor.getNome_professor(), professor.getCpf_professor(), professor.getTel_professor(), professor.getEmail_professor(), professor.getSenha_professor(), professor.getCd_professor());
     }
 
     public void excluir(Integer cd_professor) {
-        String sql = "DELETE FROM professor WHERE cd_professor = ?";
+        String sql = "DELETE FROM Professor WHERE cd_professor = ?";
         jdbcTemplate.update(sql, cd_professor);
     }
 }

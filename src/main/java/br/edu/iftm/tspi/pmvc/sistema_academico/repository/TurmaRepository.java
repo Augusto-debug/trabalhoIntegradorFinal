@@ -20,7 +20,7 @@ public class TurmaRepository {
     }
 
     public List<Turma> listar() {
-        String sql = "SELECT * FROM turma";
+        String sql = "SELECT * FROM Turma";
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
             Turma turma = new Turma();
             turma.setCd_turma(rs.getInt("cd_turma"));
@@ -39,7 +39,7 @@ public class TurmaRepository {
     }
 
     public Turma buscarPorCodigo(Integer cd_turma) {
-        String sql = "SELECT * FROM turma WHERE cd_turma = ?";
+        String sql = "SELECT * FROM Turma WHERE cd_turma = ?";
         return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
             Turma turma = new Turma();
             turma.setCd_turma(rs.getInt("cd_turma"));
@@ -60,7 +60,7 @@ public class TurmaRepository {
     }
 
     public void salvar(Turma turma) {
-        String sql = "INSERT INTO turma (ano_semestre, cd_disciplina, cd_professor) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Turma (ano_semestre, cd_disciplina, cd_professor) VALUES (?, ?, ?)";
         
 
         Integer cd_disciplina = (turma.getCd_disciplina() != null) ? turma.getCd_disciplina().getCd_disciplina() : null;
@@ -70,7 +70,7 @@ public class TurmaRepository {
     }
 
     public void atualizar(Turma turma) {
-        String sql = "UPDATE turma SET ano_semestre = ?, cd_disciplina = ?, cd_professor = ? WHERE cd_turma = ?";
+        String sql = "UPDATE Turma SET ano_semestre = ?, cd_disciplina = ?, cd_professor = ? WHERE cd_turma = ?";
 
         Integer cd_disciplina = (turma.getCd_disciplina() != null) ? turma.getCd_disciplina().getCd_disciplina() : null;
         Integer cd_professor = (turma.getCd_professor() != null) ? turma.getCd_professor().getCd_professor() : null;
@@ -79,7 +79,7 @@ public class TurmaRepository {
     }
 
     public void excluir(Integer cd_turma) {
-        String sql = "DELETE FROM turma WHERE cd_turma = ?";
+        String sql = "DELETE FROM Turma WHERE cd_turma = ?";
         jdbcTemplate.update(sql, cd_turma);
     }
 }

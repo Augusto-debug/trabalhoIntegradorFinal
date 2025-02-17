@@ -25,7 +25,7 @@ public class AtendimentoRepository {
     }
 
     public List<Atendimento> listar() {
-        String sql = "SELECT * FROM atendimento";
+        String sql = "SELECT * FROM Atendimento";
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
             Atendimento atendimento = new Atendimento();
             atendimento.setCd_atendimento(rs.getInt("cd_atendimento"));
@@ -45,7 +45,7 @@ public class AtendimentoRepository {
     }
 
     public Atendimento buscarPorCodigo(Integer cd_atendimento) {
-        String sql = "SELECT * FROM atendimento WHERE cd_atendimento = ?";
+        String sql = "SELECT * FROM Atendimento WHERE cd_atendimento = ?";
         return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
             Atendimento atendimento = new Atendimento();
             atendimento.setCd_atendimento(rs.getInt("cd_atendimento"));
@@ -66,7 +66,7 @@ public class AtendimentoRepository {
     
 
     public void salvar(Atendimento atendimento) {
-        String sql = "INSERT INTO atendimento (assunto_atendimento, status, cd_aluno, cd_coordenacao) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Atendimento (assunto_atendimento, status, cd_aluno, cd_coordenacao) VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(sql,
                 atendimento.getAssunto_atendimento(),
                 atendimento.getStatus(),
@@ -76,7 +76,7 @@ public class AtendimentoRepository {
     }
 
     public void atualizar(Atendimento atendimento) {
-        String sql = "UPDATE atendimento SET assunto_atendimento = ?, status = ?, cd_aluno = ?, cd_coordenacao = ? WHERE cd_atendimento = ?";
+        String sql = "UPDATE Atendimento SET assunto_atendimento = ?, status = ?, cd_aluno = ?, cd_coordenacao = ? WHERE cd_atendimento = ?";
         jdbcTemplate.update(sql,
                 atendimento.getAssunto_atendimento(),
                 atendimento.getStatus(),
@@ -87,7 +87,7 @@ public class AtendimentoRepository {
     }
 
     public void excluir(Integer cd_atendimento) {
-        String sql = "DELETE FROM atendimento WHERE cd_atendimento = ?";
+        String sql = "DELETE FROM Atendimento WHERE cd_atendimento = ?";
         jdbcTemplate.update(sql, cd_atendimento);
     }
 }

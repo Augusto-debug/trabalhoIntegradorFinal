@@ -20,12 +20,12 @@ public class AlunoRepository {
     }
 
     public List<Aluno> listar() {
-        String sql = "SELECT * FROM aluno";
+        String sql = "SELECT * FROM Aluno";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Aluno.class));
     }
 
     public Optional<Aluno> buscarPorCodigo(Integer cd_aluno) {
-        String sql = "SELECT * FROM aluno WHERE cd_aluno = ?";
+        String sql = "SELECT * FROM Aluno WHERE cd_aluno = ?";
         try {
             Aluno aluno = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Aluno.class), cd_aluno);
             return Optional.ofNullable(aluno);
@@ -35,18 +35,18 @@ public class AlunoRepository {
     }
 
     public void salvar(Aluno aluno) {
-        String sql = "INSERT INTO aluno (nome_aluno, email_aluno, senha_aluno, cpf_aluno, tel_aluno, data_nascimento, sexo_aluno) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Aluno (nome_aluno, email_aluno, senha_aluno, cpf_aluno, tel_aluno, data_nascimento, sexo_aluno) VALUES (?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, aluno.getNome_aluno(), aluno.getEmail_aluno(), aluno.getSenha_aluno(), aluno.getCpf_aluno(), aluno.getTel_aluno(), aluno.getData_nascimento(), aluno.getSexo_aluno());
     }
 
     public void atualizar(Aluno aluno) {
-        String sql = "UPDATE aluno SET nome_aluno = ?, email_aluno = ?, senha_aluno = ?, cpf_aluno = ?, tel_aluno = ?, data_nascimento = ?, sexo_aluno = ? WHERE cd_aluno = ?";
+        String sql = "UPDATE Aluno SET nome_aluno = ?, email_aluno = ?, senha_aluno = ?, cpf_aluno = ?, tel_aluno = ?, data_nascimento = ?, sexo_aluno = ? WHERE cd_aluno = ?";
         jdbcTemplate.update(sql, aluno.getNome_aluno(), aluno.getEmail_aluno(), aluno.getSenha_aluno(), aluno.getCpf_aluno(), aluno.getTel_aluno(), aluno.getData_nascimento(), aluno.getSexo_aluno(), aluno.getCd_aluno());
     }
 
     public void excluir(Integer cd_aluno) {
         try{
-            String sql = "DELETE FROM aluno WHERE cd_aluno = ?";
+            String sql = "DELETE FROM Aluno WHERE cd_aluno = ?";
             jdbcTemplate.update(sql, cd_aluno);
         } catch (Exception e) {
             throw new RuntimeException("Não é possível excluir o aluno, pois ela está associada a uma matrícula.");

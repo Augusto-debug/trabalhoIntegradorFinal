@@ -18,7 +18,7 @@ public class DisciplinaRepository {
     }
 
     public List<Disciplina> listar() {
-        String sql = "SELECT * FROM disciplina";
+        String sql = "SELECT * FROM Disciplina";
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
             Disciplina disciplina = new Disciplina();
             disciplina.setCd_disciplina(rs.getInt("cd_disciplina"));
@@ -37,7 +37,7 @@ public class DisciplinaRepository {
     }
 
     public Disciplina buscarPorCodigo(Integer cd_disciplina) {
-        String sql = "SELECT * FROM disciplina WHERE cd_disciplina = ?";
+        String sql = "SELECT * FROM Disciplina WHERE cd_disciplina = ?";
         return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
             Disciplina disciplina = new Disciplina();
             disciplina.setCd_disciplina(rs.getInt("cd_disciplina"));
@@ -56,7 +56,7 @@ public class DisciplinaRepository {
     }
 
     public void salvar(Disciplina disciplina) {
-        String sql = "INSERT INTO disciplina (nome_disciplina, sigla_disciplina, ementa_disciplina, carga_horaria_disciplina, cd_curso) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Disciplina (nome_disciplina, sigla_disciplina, ementa_disciplina, carga_horaria_disciplina, cd_curso) VALUES (?, ?, ?, ?, ?)";
         
         Integer cd_curso = (disciplina.getCd_curso() != null) ? disciplina.getCd_curso().getCd_curso() : null;
     
@@ -64,13 +64,13 @@ public class DisciplinaRepository {
     }
 
     public void atualizar(Disciplina disciplina) {
-        String sql = "UPDATE disciplina SET nome_disciplina = ?, sigla_disciplina = ?, ementa_disciplina = ?, carga_horaria_disciplina = ?, cd_curso = ? WHERE cd_disciplina = ?";
+        String sql = "UPDATE Disciplina SET nome_disciplina = ?, sigla_disciplina = ?, ementa_disciplina = ?, carga_horaria_disciplina = ?, cd_curso = ? WHERE cd_disciplina = ?";
         jdbcTemplate.update(sql, disciplina.getNome_disciplina(), disciplina.getSigla_disciplina(), disciplina.getEmenta_disciplina(), disciplina.getCarga_horaria_disciplina(), disciplina.getCd_curso().getCd_curso(), disciplina.getCd_disciplina());
     }
 
     public void excluir(Integer cd_disciplina) {
         try {
-            String sqlExcluir = "DELETE FROM disciplina WHERE cd_disciplina = ?";
+            String sqlExcluir = "DELETE FROM Disciplina WHERE cd_disciplina = ?";
             jdbcTemplate.update(sqlExcluir, cd_disciplina);
         } catch (Exception e) {
             throw new RuntimeException("Não é possível excluir a disciplina, pois ela está associada a uma matrícula.");

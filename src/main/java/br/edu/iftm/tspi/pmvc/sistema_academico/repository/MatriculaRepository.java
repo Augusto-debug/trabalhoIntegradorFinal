@@ -24,7 +24,7 @@ public class MatriculaRepository {
     }
 
     public List<Matricula> listar() {
-        String sql = "SELECT cd_matricula, dt_matricula, cd_aluno, cd_curso FROM matricula";
+        String sql = "SELECT cd_matricula, dt_matricula, cd_aluno, cd_curso FROM Matricula";
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
             Matricula matricula = new Matricula();
             matricula.setCd_matricula(rs.getInt("cd_matricula"));
@@ -52,7 +52,7 @@ public class MatriculaRepository {
     }
 
     public Optional<Matricula> buscarPorCodigo(Integer cd_matricula) {
-        String sql = "SELECT cd_matricula, dt_matricula, cd_aluno, cd_curso FROM matricula WHERE cd_matricula = ?";
+        String sql = "SELECT cd_matricula, dt_matricula, cd_aluno, cd_curso FROM Matricula WHERE cd_matricula = ?";
         try {
             Matricula matricula = jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
                 Matricula m = new Matricula();
@@ -86,18 +86,18 @@ public class MatriculaRepository {
     }
 
     public void salvar(Matricula matricula) {
-        String sql = "INSERT INTO matricula (dt_matricula, cd_aluno, cd_curso) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Matricula (dt_matricula, cd_aluno, cd_curso) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, matricula.getDt_matricula(), matricula.getCd_aluno(), matricula.getCd_curso());
     }
 
     public void atualizar(Matricula matricula) {
-        String sql = "UPDATE matricula SET dt_matricula = ?, cd_aluno = ?, cd_curso = ? WHERE cd_matricula = ?";
+        String sql = "UPDATE Matricula SET dt_matricula = ?, cd_aluno = ?, cd_curso = ? WHERE cd_matricula = ?";
         jdbcTemplate.update(sql, matricula.getDt_matricula(), matricula.getCd_aluno(), matricula.getCd_curso(), matricula.getCd_matricula());
     }
 
     public void excluir(Integer cd_matricula) {
         try {
-            String sql = "DELETE FROM matricula WHERE cd_matricula = ?";
+            String sql = "DELETE FROM Matricula WHERE cd_matricula = ?";
             jdbcTemplate.update(sql, cd_matricula);
         } catch (Exception e) {
             throw new RuntimeException("Não é possível excluir a matrícula. Verifique se há dependências associadas.");

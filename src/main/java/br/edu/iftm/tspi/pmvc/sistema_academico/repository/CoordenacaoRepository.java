@@ -24,7 +24,7 @@ public class CoordenacaoRepository {
     }
 
     public List<Coordenacao> listar() {
-        String sql = "SELECT cd_coordenacao, tel_coordenacao, email_coordenacao, dt_inicio, dt_fim, cd_curso, cd_professor FROM coordenacao";
+        String sql = "SELECT cd_coordenacao, tel_coordenacao, email_coordenacao, dt_inicio, dt_fim, cd_curso, cd_professor FROM Coordenacao";
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
             Coordenacao coordenacao = new Coordenacao();
             coordenacao.setCd_coordenacao(rs.getInt("cd_coordenacao"));
@@ -60,7 +60,7 @@ public class CoordenacaoRepository {
     }
     
     public Optional<Coordenacao> buscarPorCodigo(Integer cd_coordenacao) {
-        String sql = "SELECT cd_coordenacao, tel_coordenacao, email_coordenacao, dt_inicio, dt_fim, cd_curso, cd_professor FROM coordenacao WHERE cd_coordenacao = ?";
+        String sql = "SELECT cd_coordenacao, tel_coordenacao, email_coordenacao, dt_inicio, dt_fim, cd_curso, cd_professor FROM Coordenacao WHERE cd_coordenacao = ?";
         try {
             Coordenacao coordenacao = jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
                 Coordenacao c = new Coordenacao();
@@ -103,17 +103,17 @@ public class CoordenacaoRepository {
     
 
     public void salvar(Coordenacao coordenacao) {
-        String sql = "INSERT INTO coordenacao (tel_coordenacao, email_coordenacao, dt_inicio, dt_fim, cd_curso, cd_professor) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Coordenacao (tel_coordenacao, email_coordenacao, dt_inicio, dt_fim, cd_curso, cd_professor) VALUES (?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, coordenacao.getTel_coordenacao(), coordenacao.getEmail_coordenacao(), coordenacao.getDt_inicio(), coordenacao.getDt_fim(), coordenacao.getCd_curso(), coordenacao.getCd_professor());
     }
 
     public void atualizar(Coordenacao coordenacao) {
-        String sql = "UPDATE coordenacao SET tel_coordenacao = ?, email_coordenacao = ?, dt_inicio = ?, dt_fim = ?, cd_curso = ?, cd_professor = ? WHERE cd_coordenacao = ?";
+        String sql = "UPDATE Coordenacao SET tel_coordenacao = ?, email_coordenacao = ?, dt_inicio = ?, dt_fim = ?, cd_curso = ?, cd_professor = ? WHERE cd_coordenacao = ?";
         jdbcTemplate.update(sql, coordenacao.getTel_coordenacao(), coordenacao.getEmail_coordenacao(), coordenacao.getDt_inicio(), coordenacao.getDt_fim(), coordenacao.getCd_curso(), coordenacao.getCd_professor(), coordenacao.getCd_coordenacao());
     }
 
     public void excluir(Integer cd_coordenacao) {
-        String sql = "DELETE FROM coordenacao WHERE cd_coordenacao = ?";
+        String sql = "DELETE FROM Coordenacao WHERE cd_coordenacao = ?";
         jdbcTemplate.update(sql, cd_coordenacao);
     }
 }

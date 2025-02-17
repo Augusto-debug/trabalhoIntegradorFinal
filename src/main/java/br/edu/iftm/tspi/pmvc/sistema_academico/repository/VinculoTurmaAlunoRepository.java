@@ -19,7 +19,7 @@ public class VinculoTurmaAlunoRepository {
 
     public List<VinculoTurmaAluno> listar() {
         String sql = "SELECT v.*, a.nome_aluno, t.ano_semestre " +
-                     "FROM vinculoturmaaluno v " +
+                     "FROM VinculoTurmaAluno v " +
                      "JOIN aluno a ON v.cd_aluno = a.cd_aluno " +
                      "JOIN turma t ON v.cd_turma = t.cd_turma " +
                      "ORDER BY v.cd_vinculo ASC";
@@ -45,7 +45,7 @@ public class VinculoTurmaAlunoRepository {
 
     public VinculoTurmaAluno buscarPorCodigo(Integer cd_vinculo) {
         String sql = "SELECT v.*, a.nome_aluno " +
-                "FROM vinculoturmaaluno v " +
+                "FROM VinculoTurmaAluno v " +
                 "JOIN aluno a ON v.cd_aluno = a.cd_aluno " +
                 "WHERE v.cd_vinculo = ?";
         return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
@@ -68,17 +68,17 @@ public class VinculoTurmaAlunoRepository {
     }
 
     public void salvar(VinculoTurmaAluno vinculoTurmaAluno) {
-        String sql = "INSERT INTO vinculoturmaaluno (nota, frequencia, cd_turma, cd_aluno) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO VinculoTurmaAluno (nota, frequencia, cd_turma, cd_aluno) VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(sql, vinculoTurmaAluno.getNota(), vinculoTurmaAluno.getFrequencia(), vinculoTurmaAluno.getCd_turma().getCd_turma(), vinculoTurmaAluno.getCd_aluno().getCd_aluno());
     }
 
     public void atualizar(VinculoTurmaAluno vinculoTurmaAluno) {
-        String sql = "UPDATE vinculoturmaaluno SET nota = ?, frequencia = ?, cd_turma = ?, cd_aluno = ? WHERE cd_vinculo = ?";
+        String sql = "UPDATE VinculoTurmaAluno SET nota = ?, frequencia = ?, cd_turma = ?, cd_aluno = ? WHERE cd_vinculo = ?";
         jdbcTemplate.update(sql, vinculoTurmaAluno.getNota(), vinculoTurmaAluno.getFrequencia(), vinculoTurmaAluno.getCd_turma().getCd_turma(), vinculoTurmaAluno.getCd_aluno().getCd_aluno(), vinculoTurmaAluno.getCd_vinculo());
     }
 
     public void excluir(Integer cd_vinculo) {
-        String sql = "DELETE FROM vinculoturmaaluno WHERE cd_vinculo = ?";
+        String sql = "DELETE FROM VinculoTurmaAluno WHERE cd_vinculo = ?";
         jdbcTemplate.update(sql, cd_vinculo);
     }
 }
