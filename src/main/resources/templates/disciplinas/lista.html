@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Disciplinas</title>
+    <link th:href="@{/css/stylesLista.css}" rel="stylesheet">
+</head>
+<body>
+
+    <header th:insert="~{fragments/header :: header}"></header>
+
+    <main>
+        <h2>Lista de Disciplinas</h2>
+        <div th:if="${mensagemSucesso}" class="alert alert-success" th:text="${mensagemSucesso}"></div>
+        <div th:if="${mensagemErro}" class="alert alert-danger" th:text="${mensagemErro}"></div>
+        
+        <a href="#" th:href="@{/disciplinas/novo}" class="button">Cadastrar Nova Disciplina</a>
+    
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Sigla</th>
+                    <th>Ementa</th>
+                    <th>Carga Horária</th>
+                    <th>Curso</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="disciplina : ${disciplinas}">
+                    <td th:text="${disciplina.cd_disciplina}" type="number"></td>
+                    <td th:text="${disciplina.nome_disciplina}"></td>
+                    <td th:text="${disciplina.sigla_disciplina}"></td>
+                    <td th:text="${disciplina.ementa_disciplina}"></td>
+                    <td th:text="${disciplina.carga_horaria_disciplina}"></td>
+                    <td th:text="${disciplina.cd_curso.nome_curso}"></td>
+                    <td>
+                        <a th:href="@{/disciplinas/editar/{cd_disciplina}(cd_disciplina=${disciplina.cd_disciplina})}">Editar</a> |
+                        <a th:href="@{/disciplinas/excluir/{cd_disciplina}(cd_disciplina=${disciplina.cd_disciplina})}" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+    </main>
+    
+    <footer th:insert="~{fragments/footer :: footer}"></footer>
+
+</body>
+</html>

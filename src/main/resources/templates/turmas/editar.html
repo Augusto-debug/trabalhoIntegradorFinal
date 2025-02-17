@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Turma</title>
+    <link th:href="@{/css/stylesEditar.css}" rel="stylesheet">
+</head>
+<body>
+
+    <header th:insert="~{fragments/header :: header}"></header>
+
+    <main>
+        <h2>Editar Turma</h2>
+
+        <form th:action="@{/turmas/editar/{cd_turma}(cd_turma=${turma.cd_turma})}" method="post">
+            <div>
+                <label for="ano_semestre">Ano/Semestre:</label>
+                <input type="text" id="ano_semestre" name="ano_semestre" th:value="${turma.ano_semestre}" required>
+            </div>
+    
+            <div>
+                <label for="cd_disciplina">Disciplina:</label>
+                <select id="cd_disciplina" name="cd_disciplina.cd_disciplina" required>
+                    <option value="" disabled>Selecione uma disciplina</option>
+                    <option th:each="disciplina : ${disciplinas}" 
+                            th:value="${disciplina.cd_disciplina}" 
+                            th:text="${disciplina.nome_disciplina}"
+                            th:selected="${disciplina.cd_disciplina == turma.cd_disciplina.cd_disciplina}"></option>
+                </select>
+            </div>
+    
+            <div>
+                <label for="cd_professor">Professor:</label>
+                <select id="cd_professor" name="cd_professor.cd_professor" required>
+                    <option value="" disabled>Selecione um professor</option>
+                    <option th:each="professor : ${professores}" 
+                            th:value="${professor.cd_professor}" 
+                            th:text="${professor.nome_professor}"
+                            th:selected="${professor.cd_professor == turma.cd_professor.cd_professor}"></option>
+                </select>
+            </div>
+    
+            <div>
+                <button type="submit">Salvar alterações</button>
+            </div>
+        </form>
+    
+        <a href="#" th:href="@{/turmas}" class="button">Voltar para lista de turmas</a>
+    
+    </main>
+
+    <footer th:insert="~{fragments/footer :: footer}"></footer>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Nova Coordenacao</title>
+    <link th:href="@{/css/stylesEditar.css}" rel="stylesheet">
+</head>
+<body>
+
+    <header th:insert="~{fragments/header :: header}"></header>
+
+    <main>
+        <h2>Cadastrar Nova Coordenacao</h2>
+
+        <form th:action="@{/coordenacao/salvar}" th:object="${coordenacao}" method="post">
+            <div>
+                <label for="cd_curso">Curso:</label>
+                <select id="cd_curso" th:field="*{cd_curso}" required>
+                    <option th:each="curso : ${cursos}" th:value="${curso.cd_curso}" th:text="${curso.nome_curso}"></option>
+                </select>
+            </div>
+    
+            <div>
+                <label for="cd_professor">Professor:</label>
+                <select id="cd_professor" th:field="*{cd_professor}" required>
+                    <option th:each="professor : ${professores}" th:value="${professor.cd_professor}" th:text="${professor.nome_professor}"></option>
+                </select>
+            </div>
+    
+            <div>
+                <label for="dt_inicio">Data Início:</label>
+                <input type="date" id="dt_inicio" th:field="*{dt_inicio}" required>
+            </div>
+    
+            <div>
+                <label for="dt_fim">Data Fim:</label>
+                <input type="date" id="dt_fim" th:field="*{dt_fim}" required>
+            </div>
+    
+            <div>
+                <button type="submit">Salvar</button>
+            </div>
+        </form>
+    
+        <a href="/coordenacao" class="button">Voltar para a lista de coordenacoes</a>
+    
+    </main>
+    <footer th:insert="~{fragments/footer :: footer}"></footer>
+
+</body>
+</html>

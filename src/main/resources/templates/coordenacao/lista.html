@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Coordenacoes</title>
+    <link th:href="@{/css/stylesLista.css}" rel="stylesheet">
+</head>
+<body>
+
+    <header th:insert="~{fragments/header :: header}"></header>
+
+    <main>
+        <h2>Lista de Coordenacoes</h2>
+        <div th:if="${mensagemSucesso}" class="alert alert-success" th:text="${mensagemSucesso}"></div>
+        <div th:if="${mensagemErro}" class="alert alert-danger" th:text="${mensagemErro}"></div>
+    
+        <a href="#" th:href="@{/coordenacao/novo}" class="button">Cadastrar Nova Coordenacao</a>
+    
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Curso</th>
+                    <th>Professor</th>
+                    <th>Data Início</th>
+                    <th>Data Fim</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="coordenacao : ${coordenacoes}">
+                    <td th:text="${coordenacao.cd_coordenacao}"></td>
+                    <td th:text="${coordenacao.curso.nome_curso}"></td>
+                    <td th:text="${coordenacao.professor.nome_professor}"></td>                
+                    <td th:text="${coordenacao.dt_inicio}"></td>
+                    <td th:text="${coordenacao.dt_fim}"></td>
+                    <td>
+                        <a th:href="@{/coordenacao/editar/{cd_coordenacao}(cd_coordenacao=${coordenacao.cd_coordenacao})}">Editar</a> | 
+                        <a th:href="@{/coordenacao/excluir/{cd_coordenacao}(cd_coordenacao=${coordenacao.cd_coordenacao})}" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+    </main>
+    <footer th:insert="~{fragments/footer :: footer}"></footer>
+
+</body>
+</html>

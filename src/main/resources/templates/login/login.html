@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial - Sistema Acadêmico</title>
+    <link th:href="@{/css/stylesIndex.css}" rel="stylesheet">
+</head>
+<body>
+    <header>    
+        <div>
+            <img th:src="@{/img/logo.jpg}" alt="Logo do Sistema" width="100px">
+            <img src="" alt="">
+        </div>
+        <div>        
+            <h1>Sistema Acadêmico SIAC</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="containerLogin">
+            <h2>Login</h2>
+            <form method="POST" action="/login/entrar">
+                <label for="usuario">Usuário</label>
+                <input type="text" id="usuario" name="usuario" required placeholder="Digite seu usuário">
+                
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" required placeholder="Digite sua senha">
+                
+                <button type="submit" id="btnLogin">Entrar</button>
+                
+                <p th:if="${mensagem}" th:text="${mensagem}" class="mensagem" role="alert"></p>
+            </form>
+            <p>
+                <a href="/login/telaNovoUsuario" class="signup-link">Ainda não tem cadastro? Clique aqui para se cadastrar.</a>
+            </p>
+        </div>
+    </main>
+
+
+    <footer th:insert="~{fragments/footer :: footer}"></footer>
+
+</body>
+</html>

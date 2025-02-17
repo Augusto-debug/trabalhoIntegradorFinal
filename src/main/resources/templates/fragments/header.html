@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="header">
+        <div>
+            <h1>Sistema Acadêmico</h1>
+        </div>
+        <div>
+            <ul>
+                <li><a th:href="@{/menu}">Menu Principal</a></li>            
+                <li><a th:href="@{/}">Sair do Sistema</a></li>            
+            </ul>
+        </div>
+    </div>
+
+</body>

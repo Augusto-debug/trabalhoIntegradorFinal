@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Professores</title>
+    <link th:href="@{/css/stylesLista.css}" rel="stylesheet">
+</head>
+<body>
+
+    <header th:insert="~{fragments/header :: header}"></header>
+    
+    <main>
+        <h2>Lista de Professores</h2>
+        <div th:if="${mensagemSucesso}" class="alert alert-success" th:text="${mensagemSucesso}"></div>
+        <div th:if="${mensagemErro}" class="alert alert-danger" th:text="${mensagemErro}"></div>
+        
+        <a href="/professores/novo" class="button">Cadastrar Novo Professor</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="professor : ${professores}">
+                    <td th:text="${professor.cd_professor}"></td>
+                    <td th:text="${professor.nome_professor}"></td>
+                    <td th:text="${professor.cpf_professor}"></td>
+                    <td th:text="${professor.tel_professor}"></td>
+                    <td th:text="${professor.email_professor}"></td>
+                    <td>
+                        <a th:href="@{'/professores/editar/' + ${professor.cd_professor}}">Editar</a>
+                        <a th:href="@{'/professores/excluir/' + ${professor.cd_professor}}" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+    </main>
+    
+    <footer th:insert="~{fragments/footer :: footer}"></footer>
+
+</body>
+</html>

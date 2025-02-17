@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Vínculos de Turma com Aluno</title>
+    <link th:href="@{/css/stylesLista.css}" rel="stylesheet">
+</head>
+
+<body>
+    <header th:insert="~{fragments/header :: header}"></header>
+
+    <main>
+        <h2>Lista de Vínculos de Turma com Aluno</h2>
+        <div th:if="${mensagemSucesso}" class="alert alert-success" th:text="${mensagemSucesso}"></div>
+        <div th:if="${mensagemErro}" class="alert alert-danger" th:text="${mensagemErro}"></div>
+
+        <a th:href="@{/vinculo_turma_aluno/novo}" class="button">Cadastrar Novo Vínculo</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nota</th>
+                    <th>Frequência</th>
+                    <th>Turma (Ano/Semestre)</th>
+                    <th>Aluno</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="vinculo : ${vinculo_turma_aluno}">
+                    <td th:text="${vinculo.cd_vinculo}"></td>
+                    <td th:text="${vinculo.nota}"></td>
+                    <td th:text="${vinculo.frequencia}"></td>
+                    <td th:text="${vinculo.cd_turma?.ano_semestre}"></td>
+                    <td th:text="${vinculo.cd_aluno?.nome_aluno}"></td>
+                    <td>
+                        <a
+                            th:href="@{/vinculo_turma_aluno/editar/{cd_vinculo}(cd_vinculo=${vinculo.cd_vinculo})}">Editar</a>
+                        |
+                        <a th:href="@{/vinculo_turma_aluno/excluir/{cd_vinculo}(cd_vinculo=${vinculo.cd_vinculo})}"
+                            onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </main>
+
+    <footer th:insert="~{fragments/footer :: footer}"></footer>
+</body>
+
+</html>

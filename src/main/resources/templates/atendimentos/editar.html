@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Atendimento</title>
+    <link th:href="@{/css/stylesEditar.css}" rel="stylesheet">
+</head>
+<body>
+
+    <header th:insert="~{fragments/header :: header}"></header>
+
+    <main>
+        <h2>Editar Atendimento</h2>
+
+        <form th:action="@{/atendimentos/editar/{cd_atendimento}(cd_atendimento=${atendimento.cd_atendimento})}" th:object="${atendimento}" method="post">
+            <div>
+                <label for="assunto_atendimento">Assunto do Atendimento:</label>
+                <input type="text" id="assunto_atendimento" th:field="*{assunto_atendimento}" required />
+            </div>
+    
+            <div>
+                <label for="status">Status:</label>
+                <select id="status" th:field="*{status}" required>
+                    <option value="Pendente" th:selected="${'Pendente' == atendimento.status}">Pendente</option>
+                    <option value="Em Andamento" th:selected="${'Em Andamento' == atendimento.status}">Em Andamento</option>
+                    <option value="Concluído" th:selected="${'Concluído' == atendimento.status}">Concluído</option>
+                </select>
+            </div>
+    
+            <div>
+                <label for="cd_aluno">Aluno:</label>
+                <select id="cd_aluno" th:field="*{cd_aluno.cd_aluno}" required>
+                    <option value="">Selecione um aluno</option>
+                    <option th:each="aluno : ${alunos}" 
+                            th:value="${aluno.cd_aluno}" 
+                            th:text="${aluno.nome_aluno}" 
+                            th:selected="${aluno.cd_aluno == atendimento.cd_aluno.cd_aluno}">
+                    </option>
+                </select>
+            </div>
+    
+            <div>
+                <label for="cd_coordenacao">Coordenação:</label>
+                <select id="cd_coordenacao" th:field="*{cd_coordenacao.cd_coordenacao}" required>
+                    <option value="">Selecione uma coordenação</option>
+                    <option th:each="coordenacao : ${coordenacoes}" 
+                            th:value="${coordenacao.cd_coordenacao}" 
+                            th:text="${coordenacao.professor.nome_professor}" 
+                            th:selected="${coordenacao.cd_coordenacao == atendimento.cd_coordenacao.cd_coordenacao}">
+                    </option>
+                </select>
+            </div>
+    
+            <div>
+                <button type="submit">Atualizar</button>
+            </div>
+        </form>
+    
+        <a href="/atendimentos" class="button">Voltar para a lista de atendimentos</a>
+    
+    </main>
+    <footer th:insert="~{fragments/footer :: footer}"></footer>
+    
+</body>
+</html>

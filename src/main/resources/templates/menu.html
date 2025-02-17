@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial - Sistema Acadêmico</title>
+    <link th:href="@{/css/stylesMain.css}" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div>
+            <img th:src="@{/img/logo.jpg}" alt="Logo do Sistema" width="100px">
+        </div>
+
+        <div>
+            <ul>
+                <li><a th:href="@{/}">Sair do Sistema</a></li>            
+            </ul>
+        </div>
+    </header>
+
+    <main >
+        <h1>Bem-vindo ao Sistema Acadêmico</h1>
+
+        <div class="menu">
+                <div class="bloco">
+                    <ul>
+                        <li><a href="/disciplinas">Gerenciar Disciplinas</a></li>
+                        <li><a href="/turmas">Gerenciar Turmas</a></li>
+                        <li><a href="/cursos">Gerenciar Cursos</a></li>    
+                    </ul>
+                </div>
+                <div class="bloco">
+                    <ul>
+                        <li><a href="/professores">Gerenciar Professores</a></li>
+                        <li><a href="/matriculas">Gerenciar Matrículas</a></li>
+                        <li><a href="/alunos">Gerenciar Alunos</a></li>  
+                    </ul>
+                </div>
+                <div class="bloco">
+                    <ul>
+                        <li><a href="/vinculo_turma_aluno">Gerenciar Vínculos de Alunos com Turmas</a></li>
+                        <li><a href="/coordenacao">Gerenciar Coordenações</a></li>
+                        <li><a href="/atendimentos">Gerenciar Atendimentos</a></li>    
+                    </ul>
+                </div>
+
+        </div>
+
+    </main>
+
+    <footer th:insert="~{fragments/footer :: footer}"></footer>
+
+</body>
+</html>

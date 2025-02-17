@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Vínculo de Turma com Aluno</title>
+    <link th:href="@{/css/stylesEditar.css}" rel="stylesheet">
+</head>
+
+<body>
+    <header th:insert="~{fragments/header :: header}"></header>
+
+    <main>
+        <h2>Editar Vínculo de Turma com Aluno</h2>
+
+        <div th:if="${mensagemSucesso}" class="alert alert-success" th:text="${mensagemSucesso}"></div>
+        <div th:if="${mensagemErro}" class="alert alert-danger" th:text="${mensagemErro}"></div>
+
+        <form th:action="@{/vinculo_turma_aluno/editar/{cd_vinculo}(cd_vinculo=${vinculo_turma_aluno.cd_vinculo})}"
+            th:object="${vinculo_turma_aluno}" method="post">
+            <div class="form-group">
+                <label for="nota">Nota:</label>
+                <input type="number" id="nota" th:field="*{nota}" step="0.1" min="0" max="100" required
+                    class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="frequencia">Frequência:</label>
+                <input type="number" id="frequencia" th:field="*{frequencia}" step="0.1" min="0" max="100" required
+                    class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="turma">Turma:</label>
+                <select id="turma" th:field="*{cd_turma.cd_turma}" required class="form-control">
+                    <option value="">Selecione uma turma</option>
+                    <option th:each="turma : ${turmas}" th:value="${turma.cd_turma}" th:text="${turma.ano_semestre}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="aluno">Aluno:</label>
+                <select id="aluno" th:field="*{cd_aluno.cd_aluno}" required class="form-control">
+                    <option value="">Selecione um aluno</option>
+                    <option th:each="aluno : ${alunos}" th:value="${aluno.cd_aluno}" th:text="${aluno.nome_aluno}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Atualizar</button>
+            </div>
+        </form>
+
+        <a th:href="@{/vinculo_turma_aluno}" class="button">Voltar para a lista de vínculos</a>
+
+    </main>
+    <footer th:insert="~{fragments/footer :: footer}"></footer>
+</body>
+
+</html>

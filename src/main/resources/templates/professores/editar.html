@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Professor</title>
+    <link th:href="@{/css/stylesEditar.css}" rel="stylesheet">
+</head>
+<body>
+
+    <header th:insert="~{fragments/header :: header}"></header>
+
+    <main>
+        <h2>Editar Professor</h2>
+
+        <form th:action="@{/professores/editar/{cd_professor}(cd_professor=${professor.cd_professor})}" th:object="${professor}" method="post">
+            <div>
+                <label for="nome_professor">Nome do Professor:</label>
+                <input type="text" id="nome_professor" th:field="*{nome_professor}" required />
+            </div>
+    
+            <div>
+                <label for="cpf_professor">CPF:</label>
+                <input type="text" id="cpf_professor" th:field="*{cpf_professor}"  placeholder="Digite seu CPF, só números" maxlength="11" pattern="\d{1,11}" required />
+            </div>
+    
+            <div>
+                <label for="tel_professor">Telefone:</label>
+                <input type="text" id="tel_professor" th:field="*{tel_professor}" placeholder="Digite seu telefone, só números" maxlength="15" pattern="\d{1,15}" required />
+            </div>
+    
+            <div>
+                <label for="email_professor">Email:</label>
+                <input type="email" id="email_professor" th:field="*{email_professor}" required />
+            </div>
+    
+            <div>
+                <label for="senha_professor">Senha:</label>
+                <input type="password" id="senha_professor" th:field="*{senha_professor}" required />
+            </div>
+    
+            <div>
+                <button type="submit">Atualizar</button>
+            </div>
+        </form>
+    
+        <a href="/professores" class="button">Voltar para a lista de professores</a>
+    
+    </main>
+    
+    <footer th:insert="~{fragments/footer :: footer}"></footer>
+
+</body>
+</html>

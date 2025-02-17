@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Turmas</title>
+    <link th:href="@{/css/stylesLista.css}" rel="stylesheet">
+</head>
+<body>
+
+    <header th:insert="~{fragments/header :: header}"></header>
+    
+    <main>
+        <h2>Lista de Turmas</h2>
+        <div th:if="${mensagemSucesso}" class="alert alert-success" th:text="${mensagemSucesso}"></div>
+        <div th:if="${mensagemErro}" class="alert alert-danger" th:text="${mensagemErro}"></div>
+        
+        <a href="#" th:href="@{/turmas/novo}" class="button">Cadastrar Nova Turma</a>
+    
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ano/Semestre</th>
+                    <th>Disciplina</th>
+                    <th>Professor</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="turma : ${turmas}">
+                    <td th:text="${turma.cd_turma}"></td>
+                    <td th:text="${turma.ano_semestre}"></td>
+                    <td>
+                        <span th:if="${turma.cd_disciplina != null}" th:text="${turma.cd_disciplina.nome_disciplina}"></span>
+                        <span th:if="${turma.cd_disciplina == null}">Sem Disciplina</span>
+                    </td>
+                    <td>
+                        <span th:if="${turma.cd_professor != null}" th:text="${turma.cd_professor.nome_professor}"></span>
+                        <span th:if="${turma.cd_professor == null}">Sem Professor</span>
+                    </td>
+                    <td>
+                        <a th:href="@{/turmas/editar/{cd_turma}(cd_turma=${turma.cd_turma})}">Editar</a> |
+                        <a th:href="@{/turmas/excluir/{cd_turma}(cd_turma=${turma.cd_turma})}" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+    </main>
+    
+    <footer th:insert="~{fragments/footer :: footer}"></footer>
+
+</body>
+</html>
