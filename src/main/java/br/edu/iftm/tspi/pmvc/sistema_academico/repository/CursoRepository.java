@@ -49,7 +49,7 @@ public class CursoRepository {
 
 
     public void salvar(Curso curso) {
-        String sql = "INSERT INTO curso (nome_curso, area_curso, carga_horaria_curso, modalidade_curso) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Curso (nome_curso, area_curso, carga_horaria_curso, modalidade_curso) VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(sql, curso.getNome_curso(), curso.getArea_curso(), curso.getCarga_horaria_curso(), curso.getModalidade_curso());
     }
 
