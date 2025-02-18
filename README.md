@@ -2,6 +2,10 @@
 
 Este projeto foi desenvolvido como parte do trabalho final para a integração das disciplinas de **Projeto Sistema Web MVC e SQL**, **Fundamentos de Banco de Dados**, **Programação Orientada a Objetos**, **JavaScript Básico** e **Algoritmos e Programação**. O objetivo foi criar um **Sistema de Controle Acadêmico** para o ensino superior, utilizando diversas tecnologias e conceitos aprendidos ao longo do curso.
 
+## Participantes
+
+- **Victor Hugo Silva**: [GitHub](https://github.com/VictorHugoSDev)
+
 ## Tecnologias Utilizadas
 
 - **Spring Boot**: Framework Java para construção de sistemas web.
