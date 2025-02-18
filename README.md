@@ -4,6 +4,9 @@ Este projeto foi desenvolvido como parte do trabalho final para a integração d
 
 ## Participantes
 
+- **Artur Machado Soares**: [GitHub](https://github.com/arturmsoares)
+- **Augusto Cesar Rezende**: [GitHub](https://github.com/Augusto-debug)
+- **Túlio Malta**: [GitHub](https://github.com/tuliomalta)
 - **Victor Hugo Silva**: [GitHub](https://github.com/VictorHugoSDev)
 
 ## Tecnologias Utilizadas
