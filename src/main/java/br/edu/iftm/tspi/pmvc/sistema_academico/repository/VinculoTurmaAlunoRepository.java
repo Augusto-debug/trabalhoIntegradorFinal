@@ -2,6 +2,7 @@ package br.edu.iftm.tspi.pmvc.sistema_academico.repository;
 
 import java.util.List;
 
+import br.edu.iftm.tspi.pmvc.sistema_academico.domain.Disciplina;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -18,10 +19,11 @@ public class VinculoTurmaAlunoRepository {
     }
 
     public List<VinculoTurmaAluno> listar() {
-        String sql = "SELECT v.*, a.nome_aluno, t.ano_semestre " +
+        String sql = "SELECT v.*, a.nome_aluno, t.ano_semestre, d.nome_disciplina " +
                 "FROM VinculoTurmaAluno v " +
                 "JOIN Aluno a ON v.cd_aluno = a.cd_aluno " +
                 "JOIN Turma t ON v.cd_turma = t.cd_turma " +
+                "JOIN Disciplina d ON t.cd_disciplina = d.cd_disciplina " +
                 "ORDER BY v.cd_vinculo ASC";
 
 
@@ -32,8 +34,11 @@ public class VinculoTurmaAlunoRepository {
                 vinculo.setFrequencia(rs.getDouble("frequencia"));
 
                 Turma turma = new Turma();
+                Disciplina disciplina = new Disciplina();
                 turma.setCd_turma(rs.getInt("cd_turma"));
                 turma.setAno_semestre(rs.getString("ano_semestre"));
+                disciplina.setNome_disciplina(rs.getString("nome_disciplina"));
+                turma.setCd_disciplina(disciplina);
                 vinculo.setCd_turma(turma);
 
                 Aluno aluno = new Aluno();

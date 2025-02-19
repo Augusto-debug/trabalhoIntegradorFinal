@@ -34,7 +34,7 @@
                     <td th:text="${vinculo.cd_vinculo}"></td>
                     <td th:text="${vinculo.nota}"></td>
                     <td th:text="${vinculo.frequencia}"></td>
-                    <td th:text="${vinculo.cd_turma?.ano_semestre}"></td>
+                    <td th:text="${vinculo.cd_turma.cd_disciplina.getNome_disciplina()}"></td>
                     <td th:text="${vinculo.cd_aluno?.nome_aluno}"></td>
                     <td>
                         <a

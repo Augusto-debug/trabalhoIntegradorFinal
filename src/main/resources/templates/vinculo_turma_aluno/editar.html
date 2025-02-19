@@ -35,7 +35,7 @@
                 <label for="turma">Turma:</label>
                 <select id="turma" th:field="*{cd_turma.cd_turma}" required class="form-control">
                     <option value="">Selecione uma turma</option>
-                    <option th:each="turma : ${turmas}" th:value="${turma.cd_turma}" th:text="${turma.ano_semestre}">
+                    <option th:each="turma : ${turmas}" th:value="${turma.cd_turma}" th:text="${turma.cd_disciplina.getNome_disciplina()}">
                     </option>
                 </select>
             </div>
